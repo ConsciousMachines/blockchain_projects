@@ -1,0 +1,19 @@
+# Bash Commands For Setting Up Multiple Local Blockchains
+
+# First initiate / create the blockchains using Geth: 
+$ geth --datadir ~/geth_example/chain1node1 init ~/geth_example/gen1.json
+$ geth --datadir ~/geth_example/chain1node2 init ~/geth_example/gen1.json
+$ geth --datadir ~/geth_example/chain2node1 init ~/geth_example/gen2.json
+$ geth --datadir ~/geth_example/chain2node2 init ~/geth_example/gen2.json  
+
+# Next create accounts, at least one on each chain
+$ geth --datadir ~/geth_example/chain1node1 account new
+$ geth --datadir ~/geth_example/chain1node2 account new
+$ geth --datadir ~/geth_example/chain2node1 account new
+$ geth --datadir ~/geth_example/chain2node2 account new
+
+# finally connect. These commands are to be run to connect in the future
+$ geth --datadir ~/geth_example/chain1node1 --networkid 1111 --port30303 console
+$ geth --datadir ~/geth_example/chain1node2 --networkid 1111 --port30304 console
+$ geth --datadir ~/geth_example/chain2node1 --networkid 2222 --port30305 console
+$ geth --datadir ~/geth_example/chain2node2 --networkid 2222 --port30306 console
