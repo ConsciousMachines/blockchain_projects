@@ -9,7 +9,7 @@
   
   > NOTE: The setup can get convoluted unless the chain directories are independent. 
   
-  A condensed script can be found [here](https://github.com/Lamden/clove/blob/master/connect/geth_example/multi_chain_mac).
+  A condensed script can be found [here](https://github.com/ConsciousMachines/blockchain_projects/blob/master/geth_tools/bash_commands.txt).
   
   # Setup
   
