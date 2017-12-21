@@ -1,4 +1,4 @@
-  # About
+  # Multichain Setup
   
   The purpose is to set up two private local blockchains using Geth to test chain-to-chain communications and contracts. Here we will use IPC connections. 
   
