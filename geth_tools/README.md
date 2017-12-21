@@ -1,6 +1,6 @@
   # Multichain Setup
   
-  The purpose is to set up two private local blockchains using Geth to test chain-to-chain communications and contracts. Here we will use IPC connections. 
+  The purpose is to set up two private local blockchains using Geth to test chain-to-chain communications and contracts. Here we will use IPC connections. Genesis Blocks have been provided that work with the latest version of Geth 1.7.3, with difficulty set to zero for quick mining without unnecessary CPU pressure, and different NetworkID names so that they theoretically represent two different blockchains between which we will be building communications.
   
   After installing [Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum), dedicate a directory to store your blockchains and nodes. Here we will mark that folder **~** and create the following:
   
