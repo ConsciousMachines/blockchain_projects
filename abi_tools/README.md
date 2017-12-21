@@ -1,5 +1,3 @@
-# blockchain_projects
-
 # ABI TO STRING AND BACK
 
 Used for encoding the ABI of a smart contract into a string to be sent over ZMQ, and then convert the string back into the ABI file (nested list / dict data structure)
