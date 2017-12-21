@@ -85,7 +85,7 @@
   ~~~~~~~~~
   To start mining with 1 thread. Your first two windows will start mining their own blockchain and the other two will mine theirs. This should look something like:
   
-![alt text](https://github.com/Lamden/clove/blob/master/connect/geth_example/mining.png)
+![alt text](https://github.com/ConsciousMachines/blockchain_projects/blob/master/geth_tools/mining.png)
   ~~~~~~~~~
   > miner.stop() # to pause mining. 
   ~~~~~~~~~
