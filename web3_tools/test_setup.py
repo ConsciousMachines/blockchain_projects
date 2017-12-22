@@ -126,11 +126,4 @@ me.eth.sendTransaction( tran_f1 )
 get_balances(madd1,madd2) # might take longer to adjust balance depending on mining speed
 
 
-
-
-
-
-
-
-
-
+# To be continued with more contract interactions!
