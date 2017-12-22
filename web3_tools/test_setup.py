@@ -99,8 +99,7 @@ contract_instance = me.eth.contract(contract_interface['abi'], contract_address)
 # To change the contract's state, we would need to do a transaction. 
 contract_instance.call().get() # returns 0 since all contract variables get initiated as 0 in Solidity
 
-tran_1 = {'from': madd1 , 'to': madd2}
-contract_instance.transact(tran_1).set(5)
+contract_instance.transact(tran_0).set(5) 
 # Returns transaction hash: 
 # '0x0af122d262c4fc8bf761c48090010a41ebeca5417c67548ea96f5e81cda5aef0'
 
