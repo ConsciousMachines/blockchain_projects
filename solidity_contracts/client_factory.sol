@@ -90,6 +90,24 @@ contract Council {
         Member(pointsJournal[memberName]).modifyDescription(memberName, newDescription);
     }
 
+	// Internal Functions
+	function bytes32ToString(bytes32 x) constant returns (string) {
+    	bytes memory bytesString = new bytes(32);
+	    uint charCount = 0;
+	    for (uint j = 0; j < 32; j++) {
+	        byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));
+	        if (char != 0) {
+	            bytesString[charCount] = char;
+	            charCount++;
+	        }
+	    }
+    	bytes memory bytesStringTrimmed = new bytes(charCount);
+    	for (j = 0; j < charCount; j++) {
+        	bytesStringTrimmed[j] = bytesString[j];
+    	}
+    	return string(bytesStringTrimmed);
+	}
+	
 	// Non-Transaction (Read-Only) Functions
     function showPoints(bytes32 _memberName) public constant returns (uint) {
         if (pointsJournal[_memberName] != 0) {
@@ -97,7 +115,7 @@ contract Council {
         }
 	}
 
-	function showDescription(bytes32 _memberName) public constant returns (bytes32) {
-            return (Member(pointsJournal[_memberName]).showDescription());
+	function showDescription(bytes32 _memberName) public constant returns (string) {
+        return (bytes32ToString(Member(pointsJournal[_memberName]).showDescription()));
 	}
 }
