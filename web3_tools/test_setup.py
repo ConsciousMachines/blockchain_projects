@@ -126,11 +126,6 @@ me.eth.sendTransaction( tran_f1 )
 get_balances(madd1,madd2) # might take longer to adjust balance depending on mining speed
 
 
-tran_1 = {'from':madd2}
-contract_instance.transact(tran_1).set(34)
-contract_instance.call().get()
-
-
 
 
 
