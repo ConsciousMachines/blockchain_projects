@@ -13,6 +13,8 @@ Some functions for connecting users by IP address and transmitting data.
 Experimental Neural Networks running on Ethereum using Solidity contracts
 ## 6. Standard Solidity
 Other Solidity contracts
+## 7. Atomic Swap
+Bitcoin side OP_CODE based script for deploying an atomic swap
 
 ###### Upcoming:
 1. Bitcoin Script language mini-contracts
