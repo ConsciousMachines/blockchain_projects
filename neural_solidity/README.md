@@ -1,6 +1,6 @@
 # Neural Networks in Solidity
 
-What better way to train AI than to have it automatically receive information on a blockchain? It can be fmor whatever sources are needed, or whoever likes to contribute. These are experimental architectures that can be called off-chain to save gas. The first use-case will be to create a network that takes in time-series data to process it through the neural network.
+What better way to train AI than to have it automatically receive information on a blockchain? It can be from whatever sources are needed, or whoever likes to contribute. These are experimental architectures that can be called off-chain to save gas. The first use-case will be to create a network that takes in time-series data to process it through the neural network, since an RNN and Ethereum's state are the same concept :)
 
 Thus Far: 
 1. RNN factory and Cell 
