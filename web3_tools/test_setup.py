@@ -23,6 +23,11 @@ me.eth.getBalance( madd2 )
 
 
 
+
+def get_balances(add1,add2):
+	print('Account 1 Balance:', me.eth.getBalance( add1 ), 'Account 2 Balance:', me.eth.getBalance( add2 ) )
+
+
 def wait_for_deployment(tx_receipt):
 	i = 0
 	contract_address = tx_receipt['contractAddress']
@@ -85,26 +90,52 @@ a = my_contract.deploy(transaction = tran_0) # .deploy() returns contract addres
 # INFO [12-21|18:46:13] Submitted contract creation              fullhash=0x392084d517a79a9f7fc3f03097bccf3fc91f90c217af3db2fc94eca6471d25c7 contract=0x3E4Cb7055E391EAda4cB5e8004c82fa083A574DA
 
 me.eth.getTransaction( a )
+tx_receipt = me.eth.getTransactionReceipt( a )
 contract_address = tx_receipt['contractAddress']
 # NOTE: the above step will return None until the contract is mined. So make sure your chain is mining!
-
+# Optionally use this helper function:
 contract_address = wait_for_deployment(tx_receipt)
-# Once the contract is mined, we can instantiate it.
+
+# Once the contract is mined, we can instantiate it., 
 # NOTE: this is where it gets tricky because Web3-py ConciseContract does not work any longer :(
 # so we have to expeirment for a bit to get it to work:
-contract_instance = me.eth.contract(contract_interface['abi'], contract_address)
+contract_instance = me.eth.contract(contract_data['abi'], contract_address)
 
 # Now after all that setup, we can finally interact with the contract!
 # With Web3-py, reading contract data can be done by using the .call() method on the contract instance. 
 # To change the contract's state, we would need to do a transaction. 
 contract_instance.call().get() # returns 0 since all contract variables get initiated as 0 in Solidity
+# The contract functionality is very specific to the data provided in the transaction dictionary.
+# For instance if you provide a 'to' address, then the .set() call won't go through.
 
-contract_instance.transact(tran_0).set(5) 
+contract_instance.transact(tran_0).set(5) #
 # Returns transaction hash: 
 # '0x0af122d262c4fc8bf761c48090010a41ebeca5417c67548ea96f5e81cda5aef0'
 
 # Now we can contnuously call:
 contract_instance.call().get()
 # And once the transaction that changes the state is mined, we will receive the new storedData value.
+
+
+get_balances(madd1,madd2)
+tran_f1 = { 'from': madd1,
+	   'to': madd2,
+	   'value':123456789000 } # a financial transaction to fund our second account for testing (assuming first is mining and therefore has ether)
+me.personal.unlockAccount(madd1, pasw, 0)
+me.eth.sendTransaction( tran_f1 )
+get_balances(madd1,madd2) # might take longer to adjust balance depending on mining speed
+
+
+tran_1 = {'from':madd2}
+contract_instance.transact(tran_1).set(34)
+contract_instance.call().get()
+
+
+
+
+
+
+
+
 
 
