@@ -43,12 +43,7 @@ contract Member {
 	   descriptionUpdate( memberr, _description);
     }
 
-	// Non-transaction requiring functons
-	// TODO: add an event that shows who looked when calling these from a non-factory address
-    function showPoints() constant returns (uint) {
-       return points;
-    }
-
+	// Internal
 	function stringToBytes32(string memory source) returns (bytes32 result) {
 		bytes memory tempEmptyStringTest = bytes(source);
 	    if (tempEmptyStringTest.length == 0) {
@@ -58,6 +53,12 @@ contract Member {
         	result := mload(add(source, 32))
     	}
 	}
+
+	// Non-transaction requiring functons
+	// TODO: add an event that shows who looked when calling these from a non-factory address
+    function showPoints() constant returns (uint) {
+       return points;
+    }
 
 	function showDescription() constant returns (bytes32) {
        return stringToBytes32( description );
@@ -69,24 +70,24 @@ contract Council {
 
     mapping(bytes32 => address) pointsJournal;
 
-    function newMember(bytes32 memberName) public {
-        if (pointsJournal[memberName] == 0) {
+	function newMember(bytes32 memberName) public {
+        if (! memberCheck(memberName)) {
             pointsJournal[memberName] = new Member(memberName);
         }
     }
 
     function pointsBoost(bytes32 memberName, uint boostAmt) public {
-        require (pointsJournal[memberName] != 0);
+        require ( memberCheck(memberName) );
         Member(pointsJournal[memberName]).pointsBoost(memberName, boostAmt);
     }
 
 	function pointsSpend(bytes32 memberName, uint spendAmt) public {
-        require (pointsJournal[memberName] != 0);
+        require ( memberCheck(memberName) );
         Member(pointsJournal[memberName]).pointsSpend(memberName, spendAmt);
     }
 
 	function updateDescription(bytes32 memberName, string newDescription) public {
-        require (pointsJournal[memberName] != 0);
+        require ( memberCheck(memberName) );
         Member(pointsJournal[memberName]).modifyDescription(memberName, newDescription);
     }
 
@@ -107,15 +108,23 @@ contract Council {
     	}
     	return string(bytesStringTrimmed);
 	}
-	
+
+	function memberCheck(bytes32 _memberName) returns (bool) {
+		if (pointsJournal[_memberName] != 0) {
+			return true;
+		}
+	}
+
 	// Non-Transaction (Read-Only) Functions
     function showPoints(bytes32 _memberName) public constant returns (uint) {
-        if (pointsJournal[_memberName] != 0) {
+        if (memberCheck(_memberName)==true){
             return (Member(pointsJournal[_memberName]).showPoints());
         }
 	}
 
 	function showDescription(bytes32 _memberName) public constant returns (string) {
-        return (bytes32ToString(Member(pointsJournal[_memberName]).showDescription()));
+		if (memberCheck(_memberName)==true){
+	        return (bytes32ToString(Member(pointsJournal[_memberName]).showDescription()));
+		}
 	}
 }
