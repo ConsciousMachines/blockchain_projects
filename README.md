@@ -9,3 +9,12 @@ Set up multiple private blockchains for the purpose of making functions that com
 Helper functions to help with our blockchains, in Python
 ## 4. ZMQ tools
 Some functions for connecting users by IP address and transmitting data. 
+## 5. Neural Solidity 
+Experimental Neural Networks running on Ethereum using Solidity contracts
+## 6. Standard Solidity
+Other Solidity contracts
+
+###### Upcoming:
+1. Bitcoin Script language mini-contracts
+2. Oracle for managing information sent to and from neural contracts
+3. Ethereum atomic swap
