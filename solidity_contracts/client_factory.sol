@@ -98,8 +98,6 @@ contract Council {
 	}
 
 	function showDescription(bytes32 _memberName) public constant returns (bytes32) {
-        return (Member(pointsJournal[_memberName]).showDescription());
+            return (Member(pointsJournal[_memberName]).showDescription());
 	}
-
-
 }
